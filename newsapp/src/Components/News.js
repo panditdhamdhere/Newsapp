@@ -4,8 +4,7 @@ import Newsitem from './Newsitem'
 export class News extends Component {
   render() {
     return (
-      <div>
-        This is a news component
+      <div className="container">
         <Newsitem title="myTitle" description="mydesc"/>
         <Newsitem/>
         <Newsitem/>
