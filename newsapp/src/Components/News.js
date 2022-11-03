@@ -35,18 +35,29 @@ export class News extends Component {
         console.log("Hello I am a constructor from news component")
         this.state = {
             articles: this.articles,
-            loading: false
+            loading: false,
+            page:1
         }
     }
 
     async componentDidMount() {
         console.log("cdm");
-        let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=6c918298bcfa4cf38a64b35e98f5a148";
+        let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=6c918298bcfa4cf38a64b35e98f5a148&page=1";
         let data = await fetch(url);
         let parseData = await data.json()
         console.log(parseData);
         this.setState({ articles: parseData.articles });
     }
+
+handlePrevClick = () => {
+console.log("Previous");
+}
+
+handleNextClick = () => {
+    console.log("Next");
+}
+
+
     render() {
         console.log("render");
         return (
@@ -55,10 +66,14 @@ export class News extends Component {
                 <div className="row">
                     {this.state.articles.map((element) => {
                         return <div className="col-md-4" key={element.url}>
-                            <Newsitem title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url}/>
-</div>
+                            <Newsitem title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url} />
+                        </div>
                     })}
 
+                </div>
+                <div className="container d-flex justify-content-between">
+                <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
+                <button type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
                 </div>
             </div>
         )
