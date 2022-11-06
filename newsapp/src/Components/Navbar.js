@@ -27,6 +27,10 @@ export class Navbar extends Component {
                         </div>
                     </div>
                 </nav >
+                <div>
+                    <p>Build with love ❤️ By Pandit</p>
+                </div>
+                )
             </div >
         )
     }
